@@ -23,18 +23,17 @@ _start:
 
 message:
 
-	mov eax, 4
-	mov ebx, 1
-	mov ecx, message_var 
-	mov edx, tamMessage_var  
-	int 0x80
-	
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, message_var 
+	mov rdx, tamMessage_var  
+	syscall	
 input:
-	mov eax, 3
-	mov ebx, 0
-	mov ecx, year
-	mov edx, 4 + 1 ; added 1 more byte to get NL key input: 0xa (ASCII code)
-	int 0x80
+	mov rax, 0
+	mov rdi, 0
+	mov rsi, year
+	mov rdx, 4 + 1 ; added 1 more byte to get NL key input: 0xa (ASCII code)
+	syscall	
 
 convert:   ; convert from ASCII
 
@@ -102,27 +101,27 @@ calc:
 
 is_leap:
 
-	mov eax, 4
-	mov ebx, 1
-	mov ecx, isLeap
-	mov edx, tamIsLeap
-	int 0x80
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, isLeap
+	mov rdx, tamIsLeap
+	syscall	
 	jmp exit
 
 not_leap:
 
-	mov eax, 4
-	mov ebx, 1
-	mov ecx, notLeap
-	mov edx, tamNotLeap
-	int 0x80
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, notLeap
+	mov rdx, tamNotLeap
+	syscall	
 	jmp exit
 
 exit:
       
-	mov eax, 1 
-	mov ebx, 0
-	int 0x80
+	mov rax, 60 
+	mov rdi, 0
+	syscall	
 
 
 
