@@ -24,9 +24,9 @@ P.s: Yeah, I know I could use some C libs along; or Assembly libs (e.g Irvine, A
 
 Once inside the project folder:
 
-`nasm -felf src.asm -o prog.o`
+`nasm -felf64 src.asm -o prog.o`
 
-`ld -m elf_i386 prog.o -o prog.elf`
+`ld prog.o -o prog.elf`
 
 or ... if your GNU/Linux owns the ["make"](https://www.gnu.org/software/make/) tool --- most distro does --- just type:
 
