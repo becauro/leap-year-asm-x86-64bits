@@ -1,6 +1,8 @@
 
 section .data
 
+	global _start 
+
 	isLeap db 0xA, "RESULT: It's a leap year!", 0xa, 0xa, 0xd
 	tamIsLeap EQU $-isLeap
 
@@ -16,7 +18,7 @@ section .bss
 
 
 section .text
-global _start 
+
 
 _start:
 
@@ -82,14 +84,18 @@ calc:
 	jne not_leap    ; if it's not divisible by 4 that is not a leap year
 	xor esi, esi
 	xor eax, eax
-	mov eax, ecx   	; get back the original input here 
+	mov eax, ecx   	; get back the original input here
+	
+	.test_divisible_by_100:
+	
 	mov esi, 100	; It check if it's an end-of-century year (first part)
 	div esi
 	cmp edx, 0
-	je .div_400    ; End-of-century year is leap only it's divisible by 400 
+	je .test_divisible_By_400    ; End-of-century year is leap only it's divisible by 400 
 	jmp is_leap    ; if it's is not end-of-century so It's a leap 
 
-	.div_400:
+	.test_divisible_By_400:
+	
 	xor esi, esi  
 	xor eax, eax
 	mov eax, ecx 	; get back the original input here 
